@@ -23,6 +23,24 @@
 	    </dependency>
 	    
 	    <dependency>
+	        <groupId>com.sun.jersey</groupId>
+	        <artifactId>jersey-server</artifactId>
+	        <version>1.17.1</version>
+	    </dependency>
+	    
+	    <dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.14</version>
+		</dependency>
+
+	    <dependency>
+	        <groupId>com.sun.jersey</groupId>
+	        <artifactId>jersey-servlet</artifactId>
+	        <version>1.17.1</version>
+	    </dependency>
+
+	    <dependency>
 	       <groupId>javax.servlet</groupId>
 	       <artifactId>javax.servlet-api</artifactId>
 	       <version>3.0.1</version>
@@ -35,11 +53,6 @@
 	        <version>2.0-m01</version>
 	    </dependency>
 	    
-	    <dependency>
-	        <groupId>com.sun.jersey</groupId>
-	        <artifactId>jersey-server</artifactId>
-	        <version>1.17.1</version>
-	    </dependency>
 	    
 	    <dependency>
 	        <groupId>com.sun.jersey</groupId>
@@ -47,11 +60,6 @@
 	        <version>1.17.1</version>
 	    </dependency>
 	    
-	    <dependency>
-	        <groupId>com.sun.jersey</groupId>
-	        <artifactId>jersey-servlet</artifactId>
-	        <version>1.17.1</version>
-	    </dependency>
 	  </dependencies>
   
   
@@ -73,6 +81,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
             </plugin>
+            
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
