@@ -10,24 +10,27 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 @Path("reproductors")
-public class ReproductorManager {
+public class ReproductorManager 
+{
 	
-	private Map<Long, Reproductor> storage = new HashMap<>();
+	private Map<Long, Reproductor> reproductors = new HashMap<>();
 	
-	public ReproductorManager() {
+	public ReproductorManager() 
+	{
 		// TODO Auto-generated constructor stub
-		
-		storage.put(1L, new Reproductor("Imie", "Poland", "Gdansk", "Nowa", "25/4", "8464538421681", "repr@mail.com"));
+		reproductors.put(1L, new Reproductor("Nazwa", "Poland", "Gdansk", "Nowa", "25/4", "8464538421681", "repr@mail.com"));
 	}
 	
 	
 	@GET
 	@Path("/{idReproductor}")
 	@Produces("application/json")
-	public Reproductor getReproductor(@PathParam("idReproductor") Long id){
-		Reproductor r = storage.get(id);
+	public Reproductor getReproductor(@PathParam("idReproductor") Long id)
+	{
+		Reproductor r = reproductors.get(id);
 		
-		if (r == null) {
+		if (r == null) 
+		{
 			r = new Reproductor();
 		}
 		
@@ -35,11 +38,11 @@ public class ReproductorManager {
 	}
 	
 	
-	
 	@GET
 	@Path("/test")
 	@Produces("test/html")
-	public String test(){
+	public String test()
+	{
 		return "TEST";
 	}
 

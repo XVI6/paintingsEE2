@@ -1,5 +1,8 @@
 package java.ee.paintings.projectEE2.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Painting {
 	
 	private String name;
