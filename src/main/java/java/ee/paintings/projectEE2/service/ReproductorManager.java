@@ -36,7 +36,6 @@ public class ReproductorManager {
 	
 	
 	
-	
 	@GET
 	@Path("/test")
 	@Produces("test/html")
