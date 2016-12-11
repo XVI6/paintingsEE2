@@ -36,12 +36,12 @@ public class PaintingManager
 		return p;
 	}
 	
-	
+	/*
 	@GET
 	@Path("/test")
 	@Produces("test/html")
 	public String test(){
 		return "TEST";
 	}
-
+	*/
 }
