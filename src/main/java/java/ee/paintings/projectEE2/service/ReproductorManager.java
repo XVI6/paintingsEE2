@@ -1,49 +1,42 @@
 package java.ee.paintings.projectEE2.service;
 
+import java.ee.paintings.projectEE2.domain.Painting;
 import java.ee.paintings.projectEE2.domain.Reproductor;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-@Path("reproductors")
+@Stateless
 public class ReproductorManager 
 {
+	@PersistenceContext
+	EntityManager em;
 	
-	private Map<Long, Reproductor> reproductors = new HashMap<>();
-	
-	public ReproductorManager() 
-	{
-		// TODO Auto-generated constructor stub
-		reproductors.put(1L, new Reproductor("Nazwa", "Poland", "Gdansk", "Nowa", "25/4", "8464538421681", "repr@mail.com"));
+	public void addPerson(Reproductor r) {
+		r.setId(null);
+		em.persist(r);
 	}
 	
 	
-	@GET
-	@Path("/{idReproductor}")
-	@Produces("application/json")
-	public Reproductor getReproductor(@PathParam("idReproductor") Long id)
-	{
-		Reproductor r = reproductors.get(id);
-		
-		if (r == null) 
-		{
-			r = new Reproductor();
-		}
-		
-		return r;
+	@SuppressWarnings("unchecked")
+	public List<Reproductor> getAllReproductors() {
+		return em.createNamedQuery("reproductor.select.all").getResultList();
 	}
 	
 	
-	@GET
-	@Path("/test")
-	@Produces("test/html")
-	public String test()
-	{
-		return "TEST";
+	public void deleteReproductor(Reproductor r) {
+		em.find(Reproductor.class, r.getId());
+		em.remove(r);
+	}
+	
+	public List<Painting> getPaintings(Reproductor r) {
+		
+		r = em.find(Reproductor.class, r.getId());
+		
+		return new ArrayList<>(r.getPaintings());
 	}
 	
 }

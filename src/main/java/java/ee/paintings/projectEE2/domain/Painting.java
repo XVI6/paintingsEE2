@@ -1,32 +1,43 @@
 package java.ee.paintings.projectEE2.domain;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.validation.constraints.Size;
 
-@XmlRootElement
+@Entity
+@NamedNativeQueries({
+	@NamedNativeQuery(name = "painting.select.all", 
+			query = "SELECT p FROM Painting p"),
+	@NamedNativeQuery(name = "painting.select.byName",
+			query = "SELECT p FROM Painting p WHERE p.name = :name")
+})
 public class Painting {
 	
-	private String name;
-	private int yoc;
-	protected String artist;
-	protected String location;
+	private Long id;
 	
-
-	public Painting() {
-		// TODO Auto-generated constructor stub
-		super();
-	}
+	private String name = "unknown";
+	private int yoc = 0;
+	private int cost = 0;
+	private String artist = "unknown";
+	private String origin_artist = "unknown";
 	
-	public Painting(String name, int yoc, String artist, String location) {
-		super();
-		this.name = name;
-		this.yoc = yoc;
-		this.artist = artist;
-		this.location = location;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public long getId() {
+		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
-	
-	
+	@Size(min = 2)
+	@Column(unique = true, nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -34,8 +45,6 @@ public class Painting {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 
 	public int getYoc() {
 		return yoc;
@@ -45,26 +54,27 @@ public class Painting {
 		this.yoc = yoc;
 	}
 	
-	
-	
-
 	public String getArtist() {
 		return artist;
 	}
-	
+
 	public void setArtist(String artist) {
 		this.artist = artist;
 	}
 	
-	
-	
-	public String getLocation() {
-		return location;
+	public String getOrigin_artist() {
+		return origin_artist;
 	}
-	
-	public void setLocation(String plase) {
-		this.location = plase;
+
+	public void setOrigin_artist(String origin_artist) {
+		this.origin_artist = origin_artist;
 	}
-	
-	
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
 }

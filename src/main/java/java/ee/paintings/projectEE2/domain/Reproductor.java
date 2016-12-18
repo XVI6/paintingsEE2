@@ -1,34 +1,49 @@
 package java.ee.paintings.projectEE2.domain;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
-@XmlRootElement
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.OneToMany;
+
+@Entity
+@NamedNativeQueries({
+	@NamedNativeQuery(name = "reproduktor.select.all", 
+			query = "SELECT r FROM Reproduktor r"),
+	@NamedNativeQuery(name = "reproduktor.select.byName", 
+			query = "SELECT r FROM Reproduktor r WHERE r.name = :name")
+})
 public class Reproductor {
+	private Long id;
 	
-	private String name;
-	private String country;
-	private String city;
-	private String adress;
-	private String house_number;
-	private String telephone;
-	private String e_mail;
+	private String name = "unknown";
+	private String country = "unknown";
+	private String city = "unknown";
+	private String adress = "unknown";
+	private String house_number = "unknown";
+	private String telephone = "unknown";
+	private String e_mail = "unknown";
 	
-	public Reproductor() {
-		super();
+	private List<Painting> paintings = new ArrayList<>();
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public long getId() {
+		return id;
 	}
-	
-	public Reproductor(String name, String country, String city, String adress, String house_number, String telephone, String e_mail){
-		super();
-		this.name = name;
-		this.country = country;
-		this.city = city;
-		this.adress = adress;
-		this.house_number = house_number;
-		this.telephone = telephone;
-		this.e_mail = e_mail;
-	}
-	
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	@Column(unique = true, nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -84,6 +99,13 @@ public class Reproductor {
 	public void setE_mail(String e_mail) {
 		this.e_mail = e_mail;
 	}
-	
-	
+
+	@OneToMany(cascade = CascadeType.ALL)
+	public List<Painting> getPaintings() {
+		return paintings;
+	}
+
+	public void setPaintings(List<Painting> paintings) {
+		this.paintings = paintings;
+	}	
 }
