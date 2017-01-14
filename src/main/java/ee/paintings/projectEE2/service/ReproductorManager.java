@@ -26,11 +26,13 @@ public class ReproductorManager
 	@POST
 	@Path("/{reproductor}")
 	@Produces("application/json")
+	//???
 	public void addPerson(Reproductor r) {
 		r.setId(null);
 		em.persist(r);
 	}
 	
+	/*
 	@GET
 	@Path("/{reproductorId}")
 	@Produces("application/json")
@@ -39,6 +41,7 @@ public class ReproductorManager
 		
 		return r;
 	}
+	*/
 	
 	
 	@SuppressWarnings("unchecked")
@@ -52,7 +55,7 @@ public class ReproductorManager
 		em.remove(r);
 	}
 	
-	public List<Painting> getPaintings(Reproductor r) {
+	public List<Painting> getOwnedPaintings(Reproductor r) {
 		
 		r = em.find(Reproductor.class, r.getId());
 		
