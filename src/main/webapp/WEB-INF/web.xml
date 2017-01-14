@@ -18,7 +18,7 @@ id="WebApp_ID" version="3.0">
 		
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>java.ee.paintings.progect2</param-value>
+			<param-value>ee.paintings.progect2</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

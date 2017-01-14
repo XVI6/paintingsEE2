@@ -1,20 +1,22 @@
-package java.ee.paintings.projectEE2.domain;
+package ee.paintings.projectEE2.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.Size;
 
 @Entity
-@NamedNativeQueries({
-	@NamedNativeQuery(name = "painting.select.all", 
+@NamedQueries({
+	@NamedQuery(name = "painting.select.all", 
 			query = "SELECT p FROM Painting p"),
-	@NamedNativeQuery(name = "painting.select.byName",
-			query = "SELECT p FROM Painting p WHERE p.name = :name")
+	@NamedQuery(name = "painting.select.byName",
+			query = "SELECT p FROM Painting p WHERE p.name = :name"),
+	@NamedQuery(name = "painting.select.byId",
+			query = "SELECT p FROM Painting p WHERE p.id = :id")
 })
 public class Painting {
 	

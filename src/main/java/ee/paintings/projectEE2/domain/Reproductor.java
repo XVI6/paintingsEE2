@@ -1,4 +1,4 @@
-package java.ee.paintings.projectEE2.domain;
+package ee.paintings.projectEE2.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +9,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
-@NamedNativeQueries({
-	@NamedNativeQuery(name = "reproduktor.select.all", 
-			query = "SELECT r FROM Reproduktor r"),
-	@NamedNativeQuery(name = "reproduktor.select.byName", 
-			query = "SELECT r FROM Reproduktor r WHERE r.name = :name")
+@NamedQueries({
+	@NamedQuery(name = "reproduktor.select.all", 
+			query = "SELECT r FROM Reproductor r"),
+	@NamedQuery(name = "reproduktor.select.byName", 
+			query = "SELECT r FROM Reproductor r WHERE r.name = :name"),
+	@NamedQuery(name = "reproduktor.select.byId", 
+			query = "SELECT r FROM Reproductor r WHERE r.id = :id")
 })
 public class Reproductor {
 	private Long id;
@@ -31,7 +33,7 @@ public class Reproductor {
 	private String telephone = "unknown";
 	private String e_mail = "unknown";
 	
-	private List<Painting> paintings = new ArrayList<>();
+	private List<Painting> paintings = new ArrayList<Painting>();
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

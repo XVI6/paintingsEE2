@@ -1,10 +1,10 @@
-package java.ee.paintings.projectEE2.service;
-
-import java.ee.paintings.projectEE2.domain.Painting;
+package ee.paintings.projectEE2.service;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import ee.paintings.projectEE2.domain.Painting;
 
 @Stateless
 public class PaintingManager 
