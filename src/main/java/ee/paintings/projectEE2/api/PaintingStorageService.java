@@ -1,10 +1,13 @@
-package ee.paintings.projectEE2.domain;
+package ee.paintings.projectEE2.api;
 
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import ee.paintings.projectEE2.domain.Painting;
+import ee.paintings.projectEE2.domain.Reproductor;
 
 @Stateless
 public class PaintingStorageService {
@@ -13,10 +16,11 @@ public class PaintingStorageService {
 	EntityManager em;
 	
 	//C
-	public void addPainting(Long reproductorId, Long paintingId){
+	public void addPainting(Long reproductorId, Painting p){
 		
+		p.setId(null);
 		Reproductor r = em.find(Reproductor.class, reproductorId);
-		Painting p = em.find(Painting.class, paintingId);
+		//Painting p = em.find(Painting.class, paintingId);
 		
 		r.getPaintings().add(p);
 	}

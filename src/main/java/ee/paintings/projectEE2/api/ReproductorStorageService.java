@@ -1,4 +1,4 @@
-package ee.paintings.projectEE2.domain;
+package ee.paintings.projectEE2.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import ee.paintings.projectEE2.domain.Painting;
+import ee.paintings.projectEE2.domain.Reproductor;
 
 @Stateless
 public class ReproductorStorageService {

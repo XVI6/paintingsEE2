@@ -1,20 +1,11 @@
 package ee.paintings.projectEE2.web;
 
-import java.util.List;
+import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import ee.paintings.projectEE2.domain.Painting;
-import ee.paintings.projectEE2.domain.Reproductor;
-import ee.paintings.projectEE2.service.PaintingManager;
-import ee.paintings.projectEE2.service.ReproductorManager;
-
-@SessionScoped
-@Named("paintingBean")
-public class PaintingFormBean {
-	
+//@SessionScoped
+//@Named("paintingBean")
+public class PaintingFormBean implements Serializable{
+	/*
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
@@ -51,4 +42,5 @@ public class PaintingFormBean {
 		pm.addPainting(reproductorId, paintingId);
 		return null;
 	}
+	*/
 }

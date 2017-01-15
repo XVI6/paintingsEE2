@@ -2,20 +2,10 @@ package ee.paintings.projectEE2.web;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
-import javax.faces.model.ListDataModel;
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import ee.paintings.projectEE2.domain.Painting;
-import ee.paintings.projectEE2.domain.Reproductor;
-import ee.paintings.projectEE2.service.PaintingManager;
-import ee.paintings.projectEE2.service.ReproductorManager;
-
-@SessionScoped
-@Named("reproductorBean")
+//@SessionScoped
+//@Named("reproductorBean")
 public class ReproductorFormBean implements Serializable{
-	
+	/*
 	private static final long serialVersionUID = 1L;
 	
 	private Reproductor reproductor = new Reproductor();
@@ -72,5 +62,5 @@ public class ReproductorFormBean implements Serializable{
 		pm.deletePainting(reproductor2, p);
 		return null;
 	}
-	
+	*/
 }
