@@ -1,4 +1,4 @@
-package ee.paintings.projectEE2.service;
+package ee.paintings.projectEE2.domain;
 
 import java.util.List;
 
@@ -6,24 +6,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import ee.paintings.projectEE2.domain.Painting;
-import ee.paintings.projectEE2.domain.Reproductor;
-
 @Stateless
-public class PaintingManager 
-{
+public class PaintingStorageService {
 	
-	
-	
-	
-	
-	
-	
-	
-	/*
 	@PersistenceContext
 	EntityManager em;
-		
+	
+	//C
 	public void addPainting(Long reproductorId, Long paintingId){
 		
 		Reproductor r = em.find(Reproductor.class, reproductorId);
@@ -32,6 +21,25 @@ public class PaintingManager
 		r.getPaintings().add(p);
 	}
 	
+	//R
+	public Painting getPainting(Long id){
+		return (Painting) em.createNamedQuery("painting.select.byId").
+				setParameter("id", id).
+				getResultList().get(0);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Painting> getAllPainting(){
+		return em.createNamedQuery("painting.select.all").getResultList();
+	}
+	
+	//U
+	public void updatePainting(Painting p){
+		em.find(Painting.class, p.getId());
+		em.merge(p);
+	}
+	
+	//D
 	public void deletePainting(Reproductor r, Painting p){
 		
 		r = em.find(Reproductor.class, r.getId());
@@ -50,5 +58,5 @@ public class PaintingManager
 			r.getPaintings().remove(delPainting);
 		}
 	}
-	*/
+	
 }
