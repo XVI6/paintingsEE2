@@ -17,7 +17,7 @@ import ee.paintings.projectEE2.api.ReproductorStorageService;
 import ee.paintings.projectEE2.domain.Reproductor;
 
 @Stateless
-@Path("reproductors")
+@Path("/reproductors")
 public class ReproductorManager 
 {
 	
@@ -54,7 +54,11 @@ public class ReproductorManager
 		r.setTelephone(telephone);
 		r.setE_mail(e_mail);
 		
-		rss.addReproductor(r);
+                try {
+                    rss.addReproductor(r);
+                } catch (Exception e) {
+                    return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+                }
 		
 		return Response.status(Response.Status.CREATED).build();
 		
@@ -62,9 +66,9 @@ public class ReproductorManager
 	
 	//R
 	@GET
-    @Path("/{reproductorId}")
+        @Path("/{reproductorId}")
 	//@Produces("application/json")
-    public Response getReproductor(
+        public Response getReproductor(
     		@PathParam("reproductorId") Long id) {
 		
 		Reproductor r = rss.getReproductor(id);
@@ -77,7 +81,7 @@ public class ReproductorManager
 	}
 	
 	@GET
-    public Response getAllMessages() {
+        public Response getAllMessages() {
         return Response.status(Response.Status.OK).
         		entity(rss.getAllReproductors()).build();
 	}
@@ -85,18 +89,24 @@ public class ReproductorManager
 	
 	//U
 	@POST
-    @Path("/{reproductorId}")
-    public Response updateReproductor(
-            @PathParam("reproductorId") Long id,
-            @FormParam("name") String name,
+        @Path("/{reproductorId}")
+        public Response updateReproductor(
+                        @PathParam("reproductorId") Long id,
+                        @FormParam("name") String name,
 			@FormParam("country") String country,
 			@FormParam("city") String city,
 			@FormParam("adress") String adress,
 			@FormParam("house_number") String house_number,
 			@FormParam("telephone") String telephone,
 			@FormParam("e_mail") String e_mail) {
-
-        Reproductor r = rss.getReproductor(id);
+        
+            Reproductor r;
+            try {
+                r = rss.getReproductor(id);
+            } catch (Exception e) {
+                return Response.status(Response.Status.NOT_FOUND).build();
+            }
+        
 
         if (r == null) {
             return Response.status(Response.Status.NOT_FOUND).build();

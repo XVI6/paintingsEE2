@@ -10,7 +10,7 @@ id="WebApp_ID" version="3.0">
 	<display-name>App with JAX-RS</display-name>
 	
 	<servlet>
-		<servlet-name>Jersey WebApp</servlet-name>
+		<servlet-name>WebApp</servlet-name>
 		
 		<servlet-class>
 		com.sun.jersey.spi.container.servlet.ServletContainer
@@ -24,7 +24,7 @@ id="WebApp_ID" version="3.0">
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>Jersey WebApp</servlet-name>
+		<servlet-name>WebApp</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 

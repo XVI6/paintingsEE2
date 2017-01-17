@@ -3,6 +3,7 @@ package ee.paintings.projectEE2.service;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -16,7 +17,8 @@ import javax.ws.rs.core.Response;
 import ee.paintings.projectEE2.api.PaintingStorageService;
 import ee.paintings.projectEE2.domain.Painting;
 
-@Path("paintings")
+@Stateless
+@Path("/paintings")
 public class PaintingManager 
 {
 	
@@ -42,16 +44,20 @@ public class PaintingManager
 		p.setArtist(artist);
 		p.setOrigin_artist(origin_artist);
 		
-		pss.addPainting(reproductorId, p);
+                try {
+                    pss.addPainting(reproductorId, p);
+                } catch (Exception e) {
+                    return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+                }
 		
 		return Response.status(Response.Status.CREATED).build();
 	}
 	
 	//R
 	@GET
-    @Path("/{paintingId}")
+        @Path("/{paintingId}")
 	@Produces("application/json")
-    public Painting getPainting(
+        public Painting getPainting(
     		@PathParam("paintingId") Long id) {
 		
 		Painting p = pss.getPainting(id);
@@ -65,8 +71,8 @@ public class PaintingManager
 	
 	@GET
 	@Produces("application/json")
-    public List<Painting> getAllPaintings() {
-        return pss.getAllPainting();
+        public List<Painting> getAllPaintings() {
+            return pss.getAllPainting();
 	}
 	
 	
@@ -90,11 +96,13 @@ public class PaintingManager
 		p.setCost(cost);
 		p.setArtist(artist);
 		p.setOrigin_artist(origin_artist);
-		
-		
-		pss.updatePainting(p);
-		
-		return null;
+
+                try {
+                    pss.updatePainting(p);
+                } catch (Exception e) {
+                    return Response.status(Response.Status.NOT_MODIFIED).build();
+                }
+		return Response.status(Response.Status.ACCEPTED).build();
 	}
 	
 	//D
