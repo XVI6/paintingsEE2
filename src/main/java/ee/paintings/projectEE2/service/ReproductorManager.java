@@ -20,7 +20,7 @@ import ee.paintings.projectEE2.domain.Reproductor;
 @Path("/reproductors")
 public class ReproductorManager 
 {
-	
+	/*
 	@EJB
 	ReproductorStorageService rss;
 	

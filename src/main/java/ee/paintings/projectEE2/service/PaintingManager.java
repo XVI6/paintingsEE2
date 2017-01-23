@@ -21,7 +21,7 @@ import ee.paintings.projectEE2.domain.Painting;
 @Path("/paintings")
 public class PaintingManager 
 {
-	
+	/*
 	@EJB
 	PaintingStorageService pss;
 	
