@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @NamedQueries({
@@ -18,6 +19,7 @@ import javax.validation.constraints.Size;
 	@NamedQuery(name = "painting.select.byId",
 			query = "SELECT p FROM Painting p WHERE p.id = :id")
 })
+@XmlRootElement
 public class Painting {
 	
 	private Long id;

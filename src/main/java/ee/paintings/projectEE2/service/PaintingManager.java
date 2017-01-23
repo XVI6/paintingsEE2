@@ -17,11 +17,12 @@ import javax.ws.rs.core.Response;
 import ee.paintings.projectEE2.api.PaintingStorageService;
 import ee.paintings.projectEE2.domain.Painting;
 
+
 @Stateless
-@Path("/paintings")
+@Path("/painting")
 public class PaintingManager 
 {
-	/*
+	
 	@EJB
 	PaintingStorageService pss;
 	

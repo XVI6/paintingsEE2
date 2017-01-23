@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @NamedQueries({
@@ -22,6 +23,7 @@ import javax.persistence.OneToMany;
 	@NamedQuery(name = "reproduktor.select.byId", 
 			query = "SELECT r FROM Reproductor r WHERE r.id = :id")
 })
+@XmlRootElement
 public class Reproductor {
 	private Long id;
 	
