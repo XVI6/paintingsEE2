@@ -34,7 +34,6 @@ public class PaintingManager
 			@FormParam("yoc") int yoc,
 			@FormParam("cost") int cost,
 			@FormParam("artist") String artist,
-			@FormParam("origin_artist") String origin_artist,
 			@FormParam("reproductorId") Long reproductorId){
 		
 		Painting p = new Painting();
@@ -43,7 +42,6 @@ public class PaintingManager
 		p.setYoc(yoc);
 		p.setCost(cost);
 		p.setArtist(artist);
-		p.setOrigin_artist(origin_artist);
 		
                 try {
                     pss.addPainting(reproductorId, p);
@@ -86,7 +84,6 @@ public class PaintingManager
 			@FormParam("yoc") int yoc,
 			@FormParam("cost") int cost,
 			@FormParam("artist") String artist,
-			@FormParam("origin_artist") String origin_artist,
 			@FormParam("reproductorId") Long reproductorId){
 		
 		Painting p = new Painting();
@@ -96,7 +93,6 @@ public class PaintingManager
 		p.setYoc(yoc);
 		p.setCost(cost);
 		p.setArtist(artist);
-		p.setOrigin_artist(origin_artist);
 
                 try {
                     pss.updatePainting(p);

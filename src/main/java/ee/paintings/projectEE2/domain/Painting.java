@@ -24,14 +24,13 @@ public class Painting {
 	
 	private Long id;
 	
-	private String name = "unknown";
-	private int yoc = 0;
-	private int cost = 0;
-	private String artist = "unknown";
-	private String origin_artist = "unknown";
+	private String name;
+	private int yoc;
+	private int cost;
+	private String artist;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -64,14 +63,6 @@ public class Painting {
 
 	public void setArtist(String artist) {
 		this.artist = artist;
-	}
-	
-	public String getOrigin_artist() {
-		return origin_artist;
-	}
-
-	public void setOrigin_artist(String origin_artist) {
-		this.origin_artist = origin_artist;
 	}
 
 	public int getCost() {

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,18 +28,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Reproductor {
 	private Long id;
 	
-	private String name = "unknown";
-	private String country = "unknown";
-	private String city = "unknown";
-	private String adress = "unknown";
-	private String house_number = "unknown";
-	private String telephone = "unknown";
-	private String e_mail = "unknown";
+	private String name;
+	private String country;
+	private String city;
+	private String adress;
+	private String house_number;
+	private String telephone;
+	private String e_mail;
 	
 	private List<Painting> paintings = new ArrayList<Painting>();
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}
@@ -104,7 +105,7 @@ public class Reproductor {
 		this.e_mail = e_mail;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public List<Painting> getPaintings() {
 		return paintings;
 	}
