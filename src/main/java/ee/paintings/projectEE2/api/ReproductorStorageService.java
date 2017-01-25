@@ -24,25 +24,31 @@ public class ReproductorStorageService {
 	
 	//R
 	public Reproductor getReproductor(Long id){
-		return (Reproductor)em.createNamedQuery("reproductor.select.byId").
+		return (Reproductor)em.createNamedQuery("reproduktor.select.byId").
 				setParameter("id", id).
+				getResultList().get(0);
+	}
+	
+	public Reproductor getReproductorByName(String name){
+		return (Reproductor)em.createNamedQuery("reproduktor.select.byName").
+				setParameter("name", name).
 				getResultList().get(0);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Reproductor> getAllReproductors() {
-		return em.createNamedQuery("reproductor.select.all").getResultList();
+		return em.createNamedQuery("reproduktor.select.all").getResultList();
 	}
 	
 	//U
 	public void updateReproductor(Reproductor r){
-		em.find(Reproductor.class, r.getId());
+		//em.find(Reproductor.class, r.getId());
 		em.merge(r);
 	}
 	
 	//D
 	public void deleteReproductor(Reproductor r) {
-		em.find(Reproductor.class, r.getId());
+		//em.find(Reproductor.class, r.getId());
 		em.remove(r);
 	}
 	

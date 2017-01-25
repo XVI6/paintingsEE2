@@ -29,6 +29,29 @@ public class Painting {
 	private int cost;
 	private String artist;
 	
+	
+	public Painting() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Painting(String name, int yoc, int cost, String artist) {
+		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.yoc = yoc;
+		this.cost = cost;
+		this.artist = artist;
+	}
+	
+	public Painting(Long id, String name, int yoc, int cost, String artist) {
+		// TODO Auto-generated constructor stub
+		this.id = id;
+		this.name = name;
+		this.yoc = yoc;
+		this.cost = cost;
+		this.artist = artist;
+	}
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {

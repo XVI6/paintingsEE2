@@ -38,6 +38,34 @@ public class Reproductor {
 	
 	private List<Painting> paintings = new ArrayList<Painting>();
 	
+	public Reproductor() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Reproductor(String name, String country, String city, 
+			String adress, String house_number,String telephone, String e_mail){
+		this.name = name;
+		this.country = country;
+		this.city = city;
+		this.adress = adress;
+		this.house_number = house_number;
+		this.telephone = telephone;
+		this.e_mail = e_mail;
+	}
+	
+	public Reproductor(Long id, String name, String country, String city, 
+			String adress, String house_number,String telephone, String e_mail){
+		super();
+		this.id = id;
+		this.name = name;
+		this.country = country;
+		this.city = city;
+		this.adress = adress;
+		this.house_number = house_number;
+		this.telephone = telephone;
+		this.e_mail = e_mail;
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {

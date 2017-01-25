@@ -38,7 +38,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>pr</finalName>
+		<finalName>project</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
