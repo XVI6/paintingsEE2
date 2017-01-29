@@ -16,19 +16,33 @@ public class PaintingStorageService {
 	EntityManager em;
 	
 	//C
-	public void addPainting(Long reproductorId, Painting p){
+	public void addPainting(Long rId, Painting p){
 		
 		p.setId(null);
-		Reproductor r = em.find(Reproductor.class, reproductorId);
+		em.persist(p);
+		em.flush();
+		
+		p = getPainting(p.getName());
+		
+		Reproductor r = em.find(Reproductor.class, rId);
 		//Painting p = em.find(Painting.class, paintingId);
 		
-		r.getPaintings().add(p);
+		//r.getPaintings().add(p);
+		//em.merge(r);
+		p.setReproductor(r);
+		em.merge(p);
 	}
 	
 	//R
 	public Painting getPainting(Long id){
 		return (Painting) em.createNamedQuery("painting.select.byId").
 				setParameter("id", id).
+				getResultList().get(0);
+	}
+	
+	public Painting getPainting(String name){
+		return (Painting) em.createNamedQuery("painting.select.byName").
+				setParameter("name", name).
 				getResultList().get(0);
 	}
 	

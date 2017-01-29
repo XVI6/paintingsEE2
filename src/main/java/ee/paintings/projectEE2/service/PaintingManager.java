@@ -12,6 +12,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import ee.paintings.projectEE2.api.PaintingStorageService;
@@ -28,33 +29,23 @@ public class PaintingManager
 	
 	//C
 	@PUT
-	@Produces("application/json")
-	public Response addPainting(
-			@FormParam("name") String name,
-			@FormParam("yoc") int yoc,
-			@FormParam("cost") int cost,
-			@FormParam("artist") String artist,
-			@FormParam("reproductorId") Long reproductorId){
+	@Path("/{rId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addPainting(@PathParam("rId") Long rId, Painting p){
 		
-		Painting p = new Painting();
-		
-		p.setName(name);
-		p.setYoc(yoc);
-		p.setCost(cost);
-		p.setArtist(artist);
-		
-                try {
-                    pss.addPainting(reproductorId, p);
-                } catch (Exception e) {
-                    return Response.status(Response.Status.NOT_ACCEPTABLE).build();
-                }
+        try {
+            pss.addPainting(rId, p);
+        } catch (Exception e) {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+        }
 		
 		return Response.status(Response.Status.CREATED).build();
 	}
 	
+	
 	//R
 	@GET
-        @Path("/{paintingId}")
+    @Path("/{paintingId}")
 	@Produces("application/json")
         public Painting getPainting(
     		@PathParam("paintingId") Long id) {

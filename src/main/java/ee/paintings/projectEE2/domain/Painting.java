@@ -2,9 +2,11 @@ package ee.paintings.projectEE2.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.Size;
@@ -28,6 +30,8 @@ public class Painting {
 	private int yoc;
 	private int cost;
 	private String artist;
+	
+	private Reproductor reproductor;
 	
 	
 	public Painting() {
@@ -94,5 +98,14 @@ public class Painting {
 
 	public void setCost(int cost) {
 		this.cost = cost;
+	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	public Reproductor getReproductor() {
+		return reproductor;
+	}
+
+	public void setReproductor(Reproductor reproductor) {
+		this.reproductor = reproductor;
 	}
 }

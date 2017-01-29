@@ -133,7 +133,7 @@ public class Reproductor {
 		this.e_mail = e_mail;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "reproductor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	public List<Painting> getPaintings() {
 		return paintings;
 	}
