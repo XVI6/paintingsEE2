@@ -58,23 +58,12 @@ public class PaintingStorageService {
 	}
 	
 	//D
-	public void deletePainting(Reproductor r, Painting p){
+	public void deletePainting(Painting p){
 		
-		r = em.find(Reproductor.class, r.getId());
+		//r = em.find(Reproductor.class, r.getId());
 		p = em.find(Painting.class, p.getId());
 		
-		Painting delPainting = null;
-		
-		for (Painting allP : r.getPaintings()) {
-			if (allP.getId().compareTo(p.getId()) == 0) {
-				delPainting = allP;
-				break;
-			}
-		}
-		
-		if (delPainting != null) {
-			r.getPaintings().remove(delPainting);
-		}
+		em.remove(p);
 	}
 	
 }

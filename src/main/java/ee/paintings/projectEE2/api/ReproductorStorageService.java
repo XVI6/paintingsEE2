@@ -24,9 +24,10 @@ public class ReproductorStorageService {
 	
 	//R
 	public Reproductor getReproductor(Long id){
-		return (Reproductor)em.createNamedQuery("reproduktor.select.byId").
-				setParameter("id", id).
-				getResultList().get(0);
+//		return (Reproductor)em.createNamedQuery("reproduktor.select.byId").
+//				setParameter("id", id).
+//				getResultList().get(0);
+		return em.find(Reproductor.class, id);
 	}
 	
 	public Reproductor getReproductorByName(String name){

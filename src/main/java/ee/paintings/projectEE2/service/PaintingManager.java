@@ -46,7 +46,7 @@ public class PaintingManager
 	//R
 	@GET
     @Path("/{paintingId}")
-	@Produces("application/json")
+//	@Produces("application/json")
         public Painting getPainting(
     		@PathParam("paintingId") Long id) {
 		
@@ -60,7 +60,8 @@ public class PaintingManager
 	}
 	
 	@GET
-	@Produces("application/json")
+	@Path("/")
+//	@Produces("application/json")
         public List<Painting> getAllPaintings() {
             return pss.getAllPainting();
 	}
@@ -69,28 +70,20 @@ public class PaintingManager
 	//U
 	@POST
 	@Path("/{paintingId}")
-	public Response updatePainting(
-			@PathParam("paintingId") Long id,
-			@FormParam("name") String name,
-			@FormParam("yoc") int yoc,
-			@FormParam("cost") int cost,
-			@FormParam("artist") String artist,
-			@FormParam("reproductorId") Long reproductorId){
+	public Response updatePainting(Painting p){
 		
-		Painting p = new Painting();
-		
-		p.setId(id);
-		p.setName(name);
-		p.setYoc(yoc);
-		p.setCost(cost);
-		p.setArtist(artist);
-
-                try {
-                    pss.updatePainting(p);
-                } catch (Exception e) {
-                    return Response.status(Response.Status.NOT_MODIFIED).build();
-                }
-		return Response.status(Response.Status.ACCEPTED).build();
+		if (p == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        else {
+        	try {
+        		pss.updatePainting(p);;					
+        		return Response.status(Response.Status.OK).build();				
+			} catch (Exception e) {
+				// TODO: handle exception
+				return Response.status(Response.Status.BAD_REQUEST).build();
+			}
+		}
 	}
 	
 	//D
@@ -99,13 +92,17 @@ public class PaintingManager
 	public Response deletePainting(
 			@PathParam("paintingId") Long id){
 		
-		Painting p = pss.getPainting(id);
+		Painting p = null;
 		
-		if (p == null) {
+		try {
+			p = pss.getPainting(id);
+			pss.deletePainting(p);
+		} catch (Exception e) {
+			// TODO: handle exception
 			return Response.status(Response.Status.NOT_FOUND).build();
-		}else {
-			return Response.status(Response.Status.OK).build();
-		} 
+		}
+        
+        return Response.status(Response.Status.OK).build();
 	}
 	
 	/*

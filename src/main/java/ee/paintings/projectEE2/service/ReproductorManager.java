@@ -135,12 +135,12 @@ public class ReproductorManager
 		
 		try {
 			r = rss.getReproductor(id);
+			rss.deleteReproductor(r);
 		} catch (Exception e) {
 			// TODO: handle exception
 			return Response.status(Response.Status.NOT_FOUND).build();
 		}
 
-        rss.deleteReproductor(r);
         return Response.status(Response.Status.OK).build();
 	} 
 	
